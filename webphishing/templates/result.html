@@ -1,0 +1,337 @@
+{% extends 'index.html' %} {% block content %}
+<div class="relative my-5">
+	<div class="mx-auto max-w-xl">
+		{% if result == 1 %}
+		<div
+			class="p-4 text-green-700 border-l-4 border-green-700 bg-green-50"
+			role="alert"
+		>
+			<h1 class="text-xl font-semibold">URL : {{ url }}</h1>
+			<h3 class="text-2xl font-bold">Hasil : Legitimate! (Sah)</h3>
+		</div>
+		{% else %}
+		<div
+			class="p-4 text-red-700 border-l-4 border-red-700 bg-red-50"
+			role="alert"
+		>
+			<h1 class="text-xl font-semibold">URL : {{ url }}</h1>
+			<h3 class="text-2xl font-bold">Hasil : Phishing!</h3>
+		</div>
+		{% endif %}
+	</div>
+	<div
+		class="relative block my-20 p-8 pb-24 border-t-4 border-primary-600 rounded-sm shadow-xl"
+	>
+		<div class="my-5">
+			<h5 class="text-4xl font-bold">Detail</h5>
+			<div class="grid grid-cols-1 lg:grid-cols-4 gap-10 mt-3">
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Google Index</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.0 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Page Rank</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.1 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Check WWW</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.2 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Ratio Digits URL</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.3 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Domain In Title</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.4 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB Hyperlinks</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.5 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Phish Hint</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.6 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Domain Age</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.7 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">IP Address</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.8 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB QM</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.9 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Ratio Int Hyperlinks</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.10 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Length URL</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.11 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB Slash</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.12 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Length Hostname</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.13 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB EQ</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.14 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Shortest Word Host</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.15 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Longest Word Path</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.16 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Ratio Digits Host</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.17 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Prefix Suffix</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.18 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB Dots</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.19 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Empty Title</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.20 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Longest Words Raw</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.21 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">TLD In Subdomain</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.22 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Length Words Raw</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.23 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Ratio Int Media</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_input.24 }}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="mt-16">
+			<h5 class="text-4xl font-bold">Data Scaling</h5>
+			<div class="grid grid-cols-1 lg:grid-cols-4 gap-10 mt-3">
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Google Index</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.0 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Page Rank</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.1 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Check WWW</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.2 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Ratio Digits URL</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.3 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Domain In Title</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.4 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB Hyperlinks</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.5 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Phish Hint</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.6 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Domain Age</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.7 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">IP Address</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.8 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB QM</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.9 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Ratio Int Hyperlinks</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.10 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Length URL</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.11 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB Slash</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.12 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Length Hostname</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.13 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB EQ</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.14 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Shortest Word Host</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.15 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Longest Word Path</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.16 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Ratio Digits Host</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.17 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Prefix Suffix</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.18 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">NB Dots</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.19 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Empty Title</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.20 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Longest Words Raw</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.21 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">TLD In Subdomain</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.22 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Length Words Raw</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.23 }}
+					</p>
+				</div>
+				<div class="flex justify-between">
+					<label class="text-base font-semibold">Ratio Int Media</label>
+					<p class="text-base ml-2 text-primary-400 font-bold">
+						{{ data_scale.24 }}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
