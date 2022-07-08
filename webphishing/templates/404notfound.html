@@ -1,0 +1,22 @@
+{% extends 'index.html' %} {% block content %}
+<div
+	class="w-full h-screen flex flex-col justify-center items-center bg-gray-100"
+>
+	<h1 class="text-7xl font-extrabold text-black tracking-widest">404</h1>
+	<div
+		class="bg-primary-400 text-white px-2 text-lg rounded rotate-12 absolute"
+	>
+		Page Not Found
+	</div>
+	<div>
+		<h6 class="mb-2 text-2xl font-bold text-center text-gray-800 md:text-3xl">
+			<span class="text-red-500">Oops!</span> Page not found
+		</h6>
+
+		<p class="mb-8 text-center text-gray-500 md:text-lg">
+			<b>URL : {{ url }}</b> tidak ditemukan.
+		</p>
+	</div>
+</div>
+
+{% endblock %}

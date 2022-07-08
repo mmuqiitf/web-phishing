@@ -48,9 +48,9 @@ def index(request):
 
 def result(request):
     if request.method == 'POST':
-        url = request.POST["url"]
+        urlweb = request.POST["url"]
         api_key = "c0sc88cccogs8g4c0c8osgowskg44ogs8ow4wk8w" # One Page Rank API
-        state, url, page = eu.is_URL_accessible(url)
+        state, url, page = eu.is_URL_accessible(urlweb)
         Href = {'internals':[], 'externals':[], 'null':[]}
         Link = {'internals':[], 'externals':[], 'null':[]}
         Anchor = {'safe':[], 'unsafe':[], 'null':[]}
@@ -77,7 +77,7 @@ def result(request):
             scheme = parsed.scheme
             Href, Link, Anchor, Media, Form, CSS, Favicon, IFrame, Title, Text = eu.extract_data_from_URL(hostname, content, domain, Href, Link, Anchor, Media, Form, CSS, Favicon, IFrame, Title, Text)
         else:
-            Href, Link, Anchor, Media, Form, CSS, Favicon, IFrame, Title, Text = None
+            return render(request, '404notfound.html', context={"url": urlweb})
         
         google_index = ef.google_index(url)
         page_rank = ef.page_rank(api_key, domain)
@@ -121,3 +121,6 @@ def result(request):
         # return JsonResponse({"data_input": data_input, "data_scale": json.dumps(data_scale[0], cls=NpEncoder), "result": json.dumps(result[0], cls=NpEncoder)})
 
         return render(request, 'result.html', context={"url": url, "data_input":data_input, "data_scale": data_scale[0], "result":result})
+
+def notfound(request):
+    return render(request, '404notfound.html')

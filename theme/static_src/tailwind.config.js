@@ -340,6 +340,7 @@ module.exports = {
 			"4xl": "2.25rem",
 			"5xl": "3rem",
 			"6xl": "4rem",
+			"7xl": "8rem",
 		},
 		fontWeight: {
 			hairline: "100",
@@ -669,15 +670,6 @@ module.exports = {
 			110: "1.1",
 			125: "1.25",
 			150: "1.5",
-		},
-		rotate: {
-			"-180": "-180deg",
-			"-90": "-90deg",
-			"-45": "-45deg",
-			0: "0",
-			45: "45deg",
-			90: "90deg",
-			180: "180deg",
 		},
 		translate: (theme, { negative }) => ({
 			...theme("spacing"),
