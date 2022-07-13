@@ -90,23 +90,22 @@ def result(request):
         ip = uf.having_ip_address(url)
         nb_qm = uf.count_exclamation(url)
         ratio_intHyperlinks = cf.internal_hyperlinks(Href, Link, Media, Form, CSS, Favicon)
-        length_hostname = uf.url_length(hostname)
         length_url = uf.url_length(url)
         nb_slash = uf.count_slash(url)
+        length_hostname = uf.url_length(hostname)
         nb_eq = uf.count_equal(url)
-        ratio_digits_host = uf.ratio_digits(hostname)
         shortest_word_host = uf.shortest_word_length(words_raw_host)
         longest_word_path = uf.longest_word_length(words_raw_path)
+        ratio_digits_host = uf.ratio_digits(hostname)
         prefix_suffix = uf.prefix_suffix(url)
         nb_dots = uf.count_dots(url)
-        tld_in_subdomain = uf.tld_in_subdomain(tld, subdomain)
         empty_title = cf.empty_title(Title)
         longest_words_raw = uf.longest_word_length(words_raw)
-        avg_word_host = uf.average_word_length(words_raw_host)
-        links_in_tags = cf.links_in_tags(Link)
+        tld_in_subdomain = uf.tld_in_subdomain(tld, subdomain)
+        length_words_raw = uf.length_word_raw(words_raw)
+        ratio_intMedia = cf.internal_media(Media)
 
-        data_input = [google_index, page_rank, nb_www, ratio_digits_url, domain_in_title, nb_hyperlinks, phish_hints, domain_age, ip, nb_qm, ratio_intHyperlinks, length_hostname, length_url, nb_slash, nb_eq, ratio_digits_host, shortest_word_host,
-        longest_word_path, prefix_suffix, nb_dots, tld_in_subdomain, empty_title, longest_words_raw, avg_word_host, links_in_tags]
+        data_input = [google_index, page_rank, nb_www, ratio_digits_url, domain_in_title, nb_hyperlinks, phish_hints, domain_age, ip, nb_qm, ratio_intHyperlinks, length_url, nb_slash, length_hostname, nb_eq, shortest_word_host, longest_word_path, ratio_digits_host, prefix_suffix, nb_dots, empty_title, longest_words_raw, tld_in_subdomain, length_words_raw, ratio_intMedia]
         
         path = str(Path(__file__).resolve().parent.parent)
         scaler_load = joblib.load(path + '/webphishing/scripts/std_scaler_1.bin')

@@ -458,9 +458,12 @@ def right_clic(content):
 #################################################################################################################################
 
 def domain_in_title(domain, title):
-    if domain.lower() in title.lower(): 
+    if title == None or domain == None:
         return 0
-    return 1
+    else:
+        if domain.lower() in title.lower(): 
+            return 0
+        return 1
 
 #################################################################################################################################
 #              Domain after copyright logo (Shirazi'18)
