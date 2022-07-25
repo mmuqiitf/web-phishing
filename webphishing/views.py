@@ -104,12 +104,16 @@ def result(request):
         tld_in_subdomain = uf.tld_in_subdomain(tld, subdomain)
         length_words_raw = uf.length_word_raw(words_raw)
         ratio_intMedia = cf.internal_media(Media)
+        avg_word_path = uf.average_word_length(words_raw_path)
+        avg_word_host = uf.average_word_length(words_raw_host)
 
-        data_input = [google_index, page_rank, nb_www, ratio_digits_url, domain_in_title, nb_hyperlinks, phish_hints, domain_age, ip, nb_qm, ratio_intHyperlinks, length_url, nb_slash, length_hostname, nb_eq, shortest_word_host, longest_word_path, ratio_digits_host, prefix_suffix, nb_dots, empty_title, longest_words_raw, tld_in_subdomain, length_words_raw, ratio_intMedia]
+        # data_input = [google_index, page_rank, nb_www, ratio_digits_url, domain_in_title, nb_hyperlinks, phish_hints, domain_age, ip, nb_qm, ratio_intHyperlinks, length_url, nb_slash, length_hostname, nb_eq, shortest_word_host, longest_word_path, ratio_digits_host, prefix_suffix, nb_dots, empty_title, longest_words_raw, tld_in_subdomain, length_words_raw, ratio_intMedia]
         
+        data_input = [google_index, page_rank, nb_www, ratio_digits_url, domain_in_title, domain_age, nb_hyperlinks, phish_hints, ip, nb_qm, length_url, ratio_intHyperlinks, nb_slash, nb_eq, length_hostname,shortest_word_host, ratio_digits_host, empty_title, prefix_suffix,nb_dots,longest_word_path,avg_word_path,avg_word_host,tld_in_subdomain,longest_words_raw]
+
         path = str(Path(__file__).resolve().parent.parent)
-        scaler_load = joblib.load(path + '/webphishing/scripts/std_scaler_1.bin')
-        load_model = tf.keras.models.load_model(path + '/webphishing/scripts/mlp_model_fs_25_1.h5')
+        scaler_load = joblib.load(path + '/webphishing/scripts/std_scaler.bin')
+        load_model = tf.keras.models.load_model(path + '/webphishing/scripts/mlp_model_fs_25.h5')
         data_scale = scaler_load.transform([data_input])
         load_model.compile(loss=[tf.keras.losses.CategoricalCrossentropy(), tf.keras.losses.MeanSquaredError()], 
                 optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001), 
