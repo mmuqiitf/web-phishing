@@ -1,4 +1,4 @@
-{% extends 'index.html' %} {% block content %}
+{% extends 'index.html' %} {% load static %} {% block content %}
 <div class="relative">
 	<div
 		class="flex flex-col lg:flex-row lg:items-center max-w-screen-xl mx-auto py-16 md:py-20"
@@ -48,7 +48,7 @@
 			<div class="flex justify-center lg:justify-end items-center">
 				<img
 					class="min-w-0 w-full max-w-lg xl:max-w-3xl"
-					src="https://treact.owaiskhan.me/static/media/design-illustration-2.6da6a00b.svg"
+					src="{% static '/images/undraw_domain_names_re_0uun.svg' %}"
 					alt="Design Illustration"
 				/>
 			</div>
