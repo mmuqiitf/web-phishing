@@ -8,6 +8,9 @@
 		>
 			<h1 class="text-xl font-semibold">URL : {{ url }}</h1>
 			<h3 class="text-2xl font-bold">Hasil : Legitimate! (Sah)</h3>
+			<p class="font-medium">Probabilitas :</p>
+			<p>Legitimate : {{ probability.legitimate }}</p>
+			<p>Phishing : {{ probability.phishing }}</p>
 		</div>
 		{% else %}
 		<div
@@ -16,6 +19,9 @@
 		>
 			<h1 class="text-xl font-semibold">URL : {{ url }}</h1>
 			<h3 class="text-2xl font-bold">Hasil : Phishing!</h3>
+			<p class="font-medium">Probabilitas :</p>
+			<p>Legitimate : {{ probability.legitimate }}</p>
+			<p>Phishing : {{ probability.phishing }}</p>
 		</div>
 		{% endif %}
 	</div>

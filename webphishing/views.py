@@ -31,6 +31,7 @@ from .scripts import content_features as cf
 from .scripts import external_features as ef
 from .scripts import url_features as uf
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 class NpEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -71,7 +72,7 @@ def result(request):
             tmp = url[url.find(extracted_domain.suffix):len(url)]
             pth = tmp.partition("/")
             path = pth[1] + pth[2]
-            words_raw, words_raw_host, words_raw_path= eu.words_raw_extraction(extracted_domain.domain, subdomain, pth[2])
+            words_raw, words_raw_host, words_raw_path = eu.words_raw_extraction(extracted_domain.domain, subdomain, pth[2])
             tld = extracted_domain.suffix
             parsed = urlparse(url)
             scheme = parsed.scheme
@@ -110,6 +111,10 @@ def result(request):
         # data_input = [google_index, page_rank, nb_www, ratio_digits_url, domain_in_title, nb_hyperlinks, phish_hints, domain_age, ip, nb_qm, ratio_intHyperlinks, length_url, nb_slash, length_hostname, nb_eq, shortest_word_host, longest_word_path, ratio_digits_host, prefix_suffix, nb_dots, empty_title, longest_words_raw, tld_in_subdomain, length_words_raw, ratio_intMedia]
         
         data_input = [google_index, page_rank, nb_www, ratio_digits_url, domain_in_title, domain_age, nb_hyperlinks, phish_hints, ip, nb_qm, length_url, ratio_intHyperlinks, nb_slash, nb_eq, length_hostname,shortest_word_host, ratio_digits_host, empty_title, prefix_suffix,nb_dots,longest_word_path,avg_word_path,avg_word_host,tld_in_subdomain,longest_words_raw]
+        print("Words Raw : ", words_raw)
+        print("Words Raw Host : ", words_raw_host)
+        print("Words Raw Path : ", words_raw_path)
+        print("TLD : ", tld)
 
         path = str(Path(__file__).resolve().parent.parent)
         scaler_load = joblib.load(path + '/webphishing/scripts/std_scaler.bin')
@@ -118,12 +123,16 @@ def result(request):
         load_model.compile(loss=[tf.keras.losses.CategoricalCrossentropy(), tf.keras.losses.MeanSquaredError()], 
                 optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001), 
                 metrics=['accuracy', tf.keras.metrics.MeanSquaredError()])
-        result = load_model.predict([data_scale])
-        result = np.argmax(result, axis = 1)
+        preds = load_model.predict([data_scale])
+        result = np.argmax(preds, axis = 1)
+        print(preds[0])
 
         # return JsonResponse({"data_input": data_input, "data_scale": json.dumps(data_scale[0], cls=NpEncoder), "result": json.dumps(result[0], cls=NpEncoder)})
 
-        return render(request, 'result.html', context={"url": url, "data_input":data_input, "data_scale": data_scale[0], "result":result})
+        return render(request, 'result.html', context={"url": url, "data_input":data_input, "data_scale": data_scale[0], "result":result, "probability": {
+            "phishing": preds[0][0],
+            "legitimate": preds[0][1]
+        }})
 
 def notfound(request):
     return render(request, '404notfound.html')
